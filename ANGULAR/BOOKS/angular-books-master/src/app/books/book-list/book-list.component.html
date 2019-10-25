@@ -1,0 +1,30 @@
+<!-- <app-book-new (createBook)="onCreate($event)"></app-book-new> -->
+
+<section>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>year</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr
+        *ngFor="let book of books"
+        (click)="onSelect(book)"
+        [class.selected]="selectedBook === book"
+        [routerLink]="book.id"
+      >
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.year }}</td>
+        <td><button (click)="onDelete(book.id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- <app-book-details [book]="selectedBook"></app-book-details> -->

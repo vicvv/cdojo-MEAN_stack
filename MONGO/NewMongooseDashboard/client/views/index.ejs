@@ -1,0 +1,36 @@
+<%- include('header') -%>
+<h1>HELLO WORLD!!</h1>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Pet Name</th>
+        <th>Pet Color</th>
+        <th>Pet Favorite Food</th>
+        <th>Pet Age</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+<% if (pets.length > 0){%> 
+  <tr>
+      <%  for (let pet of pets){ %>
+              <td><%= pet.id %></td> 
+              <td><%= pet.name %></td> 
+              <td><%= pet.color %></td>
+              <td><%= pet.favfood %></td>
+              <td><%= pet.age %></td> 
+              <td>
+                  <a href="/pets/<%= pet.id %>">View</a>|
+                  <a href="/pets/edit/<%= pet.id %>">Edit</a>|
+                  <a href="/pets/delete/<%= pet.id %>">Delete</a>
+              </td></tr>      
+      <% } %>
+    
+ <%}%>
+    </tbody>
+</table>
+
+
+<%- include('footer') -%>

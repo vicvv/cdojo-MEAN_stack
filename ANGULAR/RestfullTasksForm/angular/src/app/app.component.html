@@ -1,0 +1,74 @@
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+<div class="container">
+  <div class="jumbotron">
+    <h3>{{mytitle}}</h3>
+    <button (click)="allTasks()">Show All Tasks</button>
+    <table mdbTable bordered="true">
+      <!-- <thead>
+            <tr>
+              <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+            </tr>
+          </thead> -->
+      <tbody>
+        <tr mdbTableCol *ngFor="let task of tasks let i = index">
+          <th scope="row">{{i + 1}}</th>
+          <td>{{task.title}}</td>
+          <td>{{task.description}}</td>
+          <td><button (click)="editTaskForm(task)"> Edit Task</button></td>
+          <td><button (click)="deleteTask(task)"> Delete Task</button></td>
+          <td><button (click)="viewTask(task)"> ViewTask</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+
+  <div class="panel panel-primary">
+    <div class="panel-heading"></div>
+    <div class="panel-body">
+        <button (click)="addNewTask()"> Add New Task</button>
+
+        <div *ngIf="togleNew">
+          <h3>Add New Task Form </h3>
+          <form (submit)="createNewTask()">
+            <!-- use the json pipe to see how newTask changes in real time -->
+            <p> {{ newTask | json }} </p>
+            <label>Task Title: <input type="text" name="newTask.title" [(ngModel)]="newTask.title" /></label>
+            <label>Task Description: <input type="text" name="newTask.description"
+                [(ngModel)]="newTask.description" /></label>
+            <input type="submit" value="Create Task" />
+          </form>
+        </div>
+        
+
+      <!--  -->
+      <div *ngIf="togleEdit">
+        <h3>Edit Task </h3>
+        <form (submit)="onEditTask()">
+          <label>Task Title: <input class="fields" type="text" name="editTask.title"
+              [(ngModel)]="editTask.title"></label>
+          <label>Task Description: <input class="fields" type="text" name="editTask.description"
+              [(ngModel)]="editTask.description"></label>
+          <input type="submit" value="Edit" />
+        </form>
+      </div>
+
+      <div *ngIf="togleView">
+        <div class="card large text-white bg-warning mb-3" style="max-width: 18rem;">
+          <div class="card-body">
+
+            Task Title: {{viewOneTask.title}}
+            Task Description: {{viewOneTask.description}}
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+<router-outlet></router-outlet>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type ="text/javascript">
+        $(document).ready(function (){
+            var socket = io(); //1
+            console.log("Hi");
+            socket.on('greeting', function (data) { //4
+                console.log("I am socket function.")
+                console.log(data.msg); //5
+                socket.emit('thankyou', { msg: 'Thank you for connecting me! -Client' }); //6
+            });       
+         })
+    </script>
+</head>
+<body>
+    <div class="jumbotron">
+        <form action='/new', method='POST'>
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Your Name</label>
+                  <input type="text" class="form-control" id="name" name='name'>
+                </div>
+            
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1">Dojo Location</label>
+                  <select class="form-control" id="location" name ='location'>
+                    <option>San Jose</option>
+                    <option>Moon</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                        <label for="exampleFormControlSelect1">Languages</label>
+                        <select class="form-control" id="language" name='language'>
+                          <option>Perl</option>
+                          <option>Algole</option>
+                          <option>Whatever</option>
+                          <option>4</option>
+                          <option>5</option>
+                        </select>
+                      </div>
+                
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Textarea</label>
+                  <textarea class="form-control" id="textarea" rows="3" name = 'textarea'></textarea>
+                </div>
+                <input type="submit" class="btn btn-success"></input>
+              </form>
+
+            </div>
+              
+    
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <title>Project </title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top"><a class="navbar-brand"
+            href="#">Navbar</a><button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbar01" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbar01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active"><a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+                <li class="nav-item"><a class="nav-link disabled" href="#">Disabled</a></li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="dropdown01" href="#"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Drodpdown</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01"><a class="dropdown-item"
+                            href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a
+                            class="dropdown-item" href="#">Something else here</a></div>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+
+            </form><input class="form-control mr-sm-2" type="text"
+                placeholder="Search" aria-label="Search"><button class="btn btn-outline-primary my-2"
+                type="submit">Search</button>
+        </div>
+    </nav>
+    <main role="main"></main>
+    <div class="jumbotron">
+        <div class="container"></div>
+        <h1 class="display-3">Message Board</h1>
+
+
+        <form method="POST" action="/messages">
+            <div id="form-group"><label>Message Title:</label><input class="form-control" name="title" type="text">
+            </div>
+            <div id="form-group"><label>Posted by:</label><input class="form-control" name="postedby" type="text"></div>
+            <div id="form-group"><label>Message Text:</label><textarea class="form-control" name="body"></textarea>
+            </div><br><input class="btn btn-primary" type="submit" value="Submit">
+        </form>
+
+
+
+        <p>0 Message Title: Gone with the Wind | Posted By: vicky</p>
+        <p>Message: jjjjj</p>
+
+
+        <form method="POST" action="/comment/#{message.id}">
+            <div id="form-group"><label>Your Name?:</label><input class="form-control" name="user" type="text"></div>
+            <div id="form-group"><label>Comment Text:</label><textarea class="form-control" name="body"></textarea>
+            </div><br><input class="btn btn-primary" type="submit" value="Submit Comment">
+        </form>
+
+
+        
+        <footer class="container"></footer>
+        <p>&copy; Company 2019</p>
+    </div>
+</body>
+
+</html>

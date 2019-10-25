@@ -1,0 +1,16 @@
+<%- include('header') -%>
+<h1>Login</h1>
+
+<% if(messages.login) { %>
+    <% for (var x of messages.login) { %>
+    <p><%= x %></p>
+    <% } %>
+<% } %>
+
+        <form method="POST" action="/users/login">
+            <div id="form-group"><label>Email:</label><input class="form-control" name="email" type="text"></div>
+            <div id="form-group"><label>Password:</label><input class="form-control" name="password" type="password">
+            </div><br><input class="btn btn-primary" type="submit" value="Submit">
+        </form><br>
+        <hr>
+<%- include('footer') -%>

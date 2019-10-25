@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1 #{title}
+  table.ui.celled.table.center.aligned
+    tr
+      td Name
+      td Color
+      td Favorite Food
+      td Origin
+    each animal, i in animals      
+      tr
+        td  
+            a(href="/animals/"+animal._id)= animal.name
+        td #{animal.color} 
+        td #{animal.favfood}            
+        td #{animal.origin}

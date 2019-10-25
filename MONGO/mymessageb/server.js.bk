@@ -1,0 +1,93 @@
+const express = require('express');
+const path = require('path');
+const mongoose =  require('mongoose');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const flash = require('express-flash');
+const app = express();
+const ObjectId = require('mongodb').ObjectId;
+
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, './static')));
+
+app.set('views', path.join(__dirname, './views'));
+app.set('view engine', 'ejs');
+
+mongoose.connect('mongodb://localhost:27017/messageb', { useNewUrlParser: true } );
+
+var Schema = mongoose.Schema;
+
+var MessageSchema = new mongoose.Schema({
+ name: { type: String, required: true },
+ text: { type: String, required: true }, 
+ comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}], 
+}, {timestamps: true });
+
+
+mongoose.model('Message', MessageSchema);
+var Message = mongoose.model('Message') 
+
+var CommentSchema = new mongoose.Schema({
+ // since this is a reference to a different document, the _ is the naming convention!
+ _message: {type: Schema.Types.ObjectId, ref: 'Message'},
+ name: { type: String, required: true },
+ text: { type: String, required: true },
+}, {timestamps: true });
+
+mongoose.model('Comment', CommentSchema); 
+var Comment = mongoose.model('Comment')
+
+
+
+
+app.get('/', function(req, res) {
+    Message.find({})
+     .populate('comments')
+     .exec(function(err, messages) {
+          console.log(messages)
+          res.render('index', {messages: messages});
+    });
+});
+
+app.post('/messages', function(req, res) {
+    //console.log("POST DATA", req.body);
+    var message = new Message(req.body);
+    message.save(function(err){
+        if(err){
+            console.log(message.errors);
+            res.render('index', {errors: message.errors});
+        }
+        else {
+            res.redirect('/');
+        }
+    });
+})
+
+// route for creating one comment with the parent message id
+app.post('/messages/:id/comment', function (req, res){
+
+    var comment = new Comment(req.body);
+    var id = req.params.id;
+    var o_id = new ObjectId(id);
+    comment._message = o_id;
+    comment.save(function(err){
+
+    Message.findOneAndUpdate({_id: req.params.id},{ $push: { comments: comment } }, function(err, message){
+        if(err) console.log("Something wrong when updating data"); 
+        //console.log(message);  
+        res.redirect('/');
+        });
+    });
+ });
+
+
+
+app.listen(8000, function() {
+    console.log("listening on port 8000");
+})
+
+
+
+
+  

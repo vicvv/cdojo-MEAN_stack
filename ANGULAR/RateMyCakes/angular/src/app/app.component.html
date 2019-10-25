@@ -1,0 +1,57 @@
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+<div class="container">
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#!">Navbar</a>
+  </nav>
+
+  <div class="row">
+    <div class="col-md-3"> submit cake
+      <!-- (div>label>input)*5-->
+      {{ cakeForm.value | json }}
+
+      <form (submit)='createNewCake($event, cakeForm)' #cakeForm='ngForm'>
+        <!-- use the json pipe to see how newTask changes in real time -->
+        <p> {{ newCake| json }} </p>
+        <label>Baker: <input type="text" name="newTask.title" [(ngModel)]="newCake.title" /></label>
+        <label>URL Image: <input type="text" name="newTask.imageurl" [(ngModel)]="newCake.imageurl" /></label>
+        <input type="submit" value="Add Cake" />
+      </form>
+    </div>
+
+
+    <div class="col-md-9">show cake pic
+
+      <div class="loop" *ngFor="let cake of cakes let i = index">
+        <div class="row">
+          <div class="col-md-6">{{i + 1}} {{cake._id}}{{cake.title}} {{cake.imageurl}}
+            <button (click)="cakeToShow(cake)"> ViewTask</button>
+          </div>
+
+          <div class="col-md-5">
+            <form id="rating" (submit)='onEditCake(cake._id, cakeEForm)' #cakeEForm='ngForm'>
+              <input type='hidden' [value]='cake._id' name='_id'>
+              <select class="fields2" name="rating" [ngModel]="editCake.rating">
+                <option value="1" selected>1 star</option>
+                <option value="2">2 stars</option>
+                <option value="3">3 stars</option>
+                <option value="4">4 stars</option>
+                <option value="5">5 stars</option>
+              </select>
+              <textarea class="fields2" name="comment" [ngModel]="editCake.comment"></textarea>
+              <input type="submit" value="Rate!">
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10">show cake details</div>
+        <app-detail *ngIf="parentVar" [childVar]="parentVar"></app-detail>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+  <router-outlet></router-outlet>

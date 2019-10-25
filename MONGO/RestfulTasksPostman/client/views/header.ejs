@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Title</title>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header"><button class="navbar-toggle collapsed" type="button" data-toggle="collapse"
+                    data-target="#navbar" aria-expanded="false" aria-controls="navbar"><span class="sr-only">Toggle
+                        navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
+                        class="icon-bar"></span></button><a class="navbar-brand" href="/">My Project</a></div>
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    
+                    <li><a href="/routes/new">Add NEW</a></li>
+                      
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+          
+            <!-- based on the structure of your messages, determine how to display them -->
+            <% if(messages.registration) { %>
+                <% for (var x of messages.registration) { %>
+                <p><%= x %></p>
+                <% } %>
+            <% } %>
+            

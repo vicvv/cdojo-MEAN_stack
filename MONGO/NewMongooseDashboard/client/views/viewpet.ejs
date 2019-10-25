@@ -1,0 +1,16 @@
+<%- include('header') -%>
+<h1>View Pet</h1>
+<p>
+  <p>ID   <%= pet.id %></p>
+  <p>Pet Name  <%= pet.name %></p>
+  <p>Pet Color <%= pet.color %></p>
+  <p>Pet Favorite Food  <%= pet.favfood %></p>
+  <p>Pet Age  <%= pet.age %> </p>
+ 
+        
+        <a href="/pets/<%= pet.id %>">View</a>|
+        <a href="/pets/edit/<%= pet.id %>">Edit</a>|
+        <a href="/pets/delete/<%= pet.id %>">Delete</a>
+           
+</p>
+<%- include('footer') -%>

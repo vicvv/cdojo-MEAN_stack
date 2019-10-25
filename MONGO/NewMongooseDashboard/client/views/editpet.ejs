@@ -1,0 +1,15 @@
+<%- include('header') -%>
+<h1>Edit Pet</h1>
+<p>
+        <form method="POST" action="/pets/<%= pet.id %>">
+            <div id="form-group"><label>Name:</label><input class="form-control" name="name" type="text" value = "<%=pet.name %>"></div>
+            <div id="form-group"><label>Color:</label><input class="form-control" name="color" type="text" value = "<%-pet.color %>"></div>
+            <div id="form-group"><label>Favorite Food:</label><input class="form-control" name="favfood" type="text" value = "<%-pet.favfood %>"></div>
+            <div id="form-group"><label>Age:</label><input class="form-control" name="age" type="text" value = "<%-pet.age %>"></div>
+            
+            <br><input class="btn btn-primary" type="submit" value="Submit">
+        </form><br>
+        <hr>
+             
+</p>
+<%- include('footer') -%>

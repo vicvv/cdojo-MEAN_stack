@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  h1= article.title
+  h5 Message: Written by #{author}
+  p= article.body
+  hr
+  if user
+    if user.id == article.author
+      a.btn.btn-default(href='/articles/edit/'+article._id) Edit 
+      a.btn.btn-danger.delete-article(href='#',data-id=article._id) Delete
+   
+  p
+  form(method='POST', action='/comments/addc') 
+    #form-group
+      label Comment:
+      textarea.form-control(name='body')
+    br
+    
+    input.btn.btn-primary(type='submit',value='Submit')

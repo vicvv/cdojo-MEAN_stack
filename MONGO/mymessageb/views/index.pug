@@ -1,0 +1,69 @@
+doctype html
+html
+    head
+        link(rel='stylesheet', href='/css/bootstrap.min.css')
+        title Project  
+
+    body  
+        nav.navbar.navbar-expand-md.navbar-light.bg-light.fixed-top
+            a.navbar-brand(href="#") Navbar
+            button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbar01" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation")
+                span.navbar-toggler-icon
+                
+            .collapse.navbar-collapse#navbar01
+                ul.navbar-nav.mr-auto
+                    li.nav-item.active: a.nav-link(href="#") Home #[span.sr-only (current)]
+                    li.nav-item: a.nav-link(href="#") Link
+                    li.nav-item: a.nav-link.disabled(href="#") Disabled
+                    li.nav-item.dropdown
+                        a.nav-link.dropdown-toggle#dropdown01(href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Drodpdown
+                        .dropdown-menu(aria-labelledby="dropdown01")
+                            a.dropdown-item(href="#") Action
+                            a.dropdown-item(href="#") Another action
+                            a.dropdown-item(href="#") Something else here
+                    
+                form.form-inline.my-2.my-lg-0
+                input.form-control.mr-sm-2(type="text" placeholder="Search" aria-label="Search")
+                button.btn.btn-outline-primary.my-2(type="submit") Search
+        
+        main(role="main")
+        .jumbotron
+            .container
+            h1.display-3 Message Board
+
+            form(method='POST', action='/post')
+                
+                #form-group
+                    label Posted by:
+                    input.form-control(name='name', type='text')
+                
+                #form-group
+                    label Message Text:
+                    textarea.form-control(name='message')
+                br
+                input.btn.btn-primary(type='submit',value='Submit')
+            
+
+            each message, i in messages
+                
+                p #{i} Message | Posted By: #{message.name}
+                p Message: #{message.message}
+                
+                each comment in message.comments
+                    p #{i} Posted by: #{comment.name} #{comment.message}
+                    
+            
+                form(method='POST', action='/comment/#{message.id}/')
+                    #form-group
+                        label Your Name?:
+                        input.form-control(name='name', type='text')
+                    #form-group
+                        label Comment Text:
+                        textarea.form-control(name='message')
+                    br
+                    input.btn.btn-primary(type="submit",value='Submit Comment')
+
+
+
+            footer.container
+            p &copy; Company 2019

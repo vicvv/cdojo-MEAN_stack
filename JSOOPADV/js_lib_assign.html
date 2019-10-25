@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Javascript Library</title>
+</head>
+
+<body>
+    <script>
+        // 2 arguments passed, array and callback
+        var _ = {
+            map: function (array, callback) {
+                for(let i = 0; i < array.length; i++) {
+                    array[i] = callback(array[i])
+                }
+            },
+            reduce: function () {
+                // code here;
+            },
+            find: function () {
+                // code here;
+            },
+            filter: function () {
+                // code here;
+            },
+            reject: function () {
+                // code here;
+            }
+        }
+        // you just created a library with 5 methods!
+        const array = [3,4,5];
+        _.map(array, function callback(x) {return x * 5; });
+        console.log(array);
+    </script>
+</body>
+
+</html>

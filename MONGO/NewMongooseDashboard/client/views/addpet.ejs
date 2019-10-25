@@ -1,0 +1,16 @@
+<%- include('header') -%>
+<h1>
+  Add new Pet
+</h1>
+<p>
+    <form method="POST" action="/pets/new">
+        <div id="form-group"><label>Name:</label><input class="form-control" name="name" type="text"></div>
+        <div id="form-group"><label>Color:</label><input class="form-control" name="color" type="text"></div>
+        <div id="form-group"><label>Favorite Food:</label><input class="form-control" name="favfood" type="text"></div>
+        <div id="form-group"><label>Age:</label><input class="form-control" name="age" type="text"></div>
+        
+        <br><input class="btn btn-primary" type="submit" value="Submit">
+    </form><br>
+    <hr>        
+</p>
+<%- include('footer') -%>

@@ -1,0 +1,15 @@
+<p>product-list works!</p>
+
+
+<div *ngFor = 'let p of products'>
+
+<div class="card border-secondary mb-3" style="max-width: 18rem;">
+  <div class="card-header">Product Name{{p.title}}</div>
+  <div class="card-body text-secondary">
+    <h5 class="card-title">Product Image</h5>
+    <img src ="{{p.url}}" alt='ssf'>
+    <p class="card-text">Price: {{p.price}}</p>
+  </div>
+  <button [routerLink]="[p._id, 'edit']">Edit</button>
+  <button (click)="onDelete(p._id)">Delete</button>
+</div>

@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= animal.name
+  p= animal.color
+  p= animal.favfood
+  p= animal.origin
+  
+  hr
+  
+  a.btn.btn-default(href='/animals/edit/'+animal._id) Edit 
+  a.btn.btn-danger.delete-animal(href='#',data-id=animal._id) Delete
+  
